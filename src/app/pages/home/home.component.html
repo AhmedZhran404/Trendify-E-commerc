@@ -64,7 +64,7 @@
                 <i class="group-hover:text-white fa-solid fa-chevron-left text-lg"></i>
             </button>
         </div>
-
+    @if(!loading){
         <owl-carousel-o #owlCarousel1 [options]="customOptions1">
             @for (category of categorys; track $index) {
                 <ng-template #owlElement carouselSlide>
@@ -87,6 +87,8 @@
             }
         </owl-carousel-o>
 
+    }
+
         <div (click)="nextSlide()" class="btn-slider-1 cursor-pointer hover:bg-main-color group xl:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute right-[-4%] top-[50%] -translate-y-1/2 z-10 p-2">
             <button class="text-[#8B5E35]">
                 <i class="group-hover:text-white fa-solid fa-chevron-right text-lg"></i>
@@ -101,43 +103,44 @@
 <!-- && =================== start home-owl-slider-2 =============== -->
 <section class="relative home-slider-owl py-10">
 
-    <div (click)="prevSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute left-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
-        <button class="text-[#8B5E35]">
-            <i class="text-main-color fa-solid fa-chevron-left text-lg"></i>
-        </button>
-    </div>
-
-    <owl-carousel-o #owlCarousel2 [options]="customOptions2">
-        @for (img of imgs; track $index) {
-            <ng-template carouselSlide>
-                <div class="testimonial-card h-[500px] relative">
-                    <img class="w-full h-full object-cover" [src]="img" alt="image">
-                    <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none"></div>
-                </div>
-            </ng-template>
-        }
-    </owl-carousel-o>
-
-    <div class="w-full absolute  top-[50%] -translate-y-1/2  z-20">
-        <div class=" max-w-7xl mx-auto pl-2 sm:pl-0">
-            <p class="font-semibold text-[44px] text-white">Upgrade your Style</p>
-            <p class="font-medium text-[32px] text-white">
-                Up to 50% off on all <br> clothing and accessories!
-            </p>
-            <div class="pt-6">
-                <button class="w-[168px] h-[48px] text-[20px] rounded bg-main-color font-medium text-white">
-                    Shop Now
-                </button>
-            </div>
-
+        <div (click)="prevSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute left-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
+            <button class="text-[#8B5E35]">
+                <i class="text-main-color fa-solid fa-chevron-left text-lg"></i>
+            </button>
         </div>
-    </div>
+        @if(imgs.length > 0) {
+            <owl-carousel-o #owlCarousel2 [options]="customOptions2">
+                @for (img of imgs; track $index) {
+                    <ng-template carouselSlide>
+                        <div class="testimonial-card h-[500px] relative">
+                            <img class="w-full h-full object-cover" [src]="img" alt="image">
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none"></div>
+                        </div>
+                    </ng-template>
+                }
+            </owl-carousel-o>
+        }
 
-    <div (click)="nextSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute right-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
-        <button class="text-[#8B5E35]">
-            <i class="text-main-color fa-solid fa-chevron-right text-lg"></i>
-        </button>
-    </div>
+        <div class="w-full absolute  top-[50%] -translate-y-1/2  z-20">
+            <div class=" max-w-7xl mx-auto pl-2 sm:pl-0">
+                <p class="font-semibold text-[44px] text-white">Upgrade your Style</p>
+                <p class="font-medium text-[32px] text-white">
+                    Up to 50% off on all <br> clothing and accessories!
+                </p>
+                <div class="pt-6">
+                    <button class="w-[168px] h-[48px] text-[20px] rounded bg-main-color font-medium text-white">
+                        Shop Now
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div (click)="nextSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute right-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
+            <button class="text-[#8B5E35]">
+                <i class="text-main-color fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
 
 </section>
 <!-- && =================== End home-owl-slider-2 ================= -->

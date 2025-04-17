@@ -263,7 +263,7 @@ export class CheckoutComponent implements OnInit {
               if(res.status == "success"){
                 open(res.session.url , '_self');
               }
-              this.cartService.cartNumber.set(res.numOfCartItems);
+              this.cartService.cartNumber.set(0);
             },
             error:(err)=>{
               console.log(err);
@@ -279,7 +279,7 @@ export class CheckoutComponent implements OnInit {
                 setTimeout(()=>{
                   this.router.navigate(['/allorders']);
                 } , 300);
-                this.cartService.cartNumber.set(res.numOfCartItems);
+                this.cartService.cartNumber.set(0);
                 this.toastrService.info("Successfully Payment" , "Trendify");
               }
             }
