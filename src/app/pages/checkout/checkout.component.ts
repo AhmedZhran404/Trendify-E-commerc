@@ -260,8 +260,10 @@ export class CheckoutComponent implements OnInit {
           this.checkoutService.checkOutSession(this.setObjectToSendCheckOut , this.cartId).subscribe({
             next:(res)=>{
               console.log(res);
-              if(res.status == "success")
-                  open(res.session.url , '_self');
+              if(res.status == "success"){
+                open(res.session.url , '_self');
+              }
+              this.cartService.cartNumber.set(res.numOfCartItems);
             },
             error:(err)=>{
               console.log(err);
@@ -276,7 +278,8 @@ export class CheckoutComponent implements OnInit {
               if( res.status == "success") {
                 setTimeout(()=>{
                   this.router.navigate(['/allorders']);
-                } , 2000);
+                } , 300);
+                this.cartService.cartNumber.set(res.numOfCartItems);
                 this.toastrService.info("Successfully Payment" , "Trendify");
               }
             }
