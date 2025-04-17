@@ -47,6 +47,8 @@ export class NavbarComponent implements OnInit , AfterViewInit{
   private readonly router =  inject(Router);
   private readonly id =  inject(PLATFORM_ID);
   private destroy$ = new Subject<void>();
+  @ViewChild('nav') navbar!: ElementRef;
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -157,8 +159,11 @@ export class NavbarComponent implements OnInit , AfterViewInit{
       this.linkEl.forEach((link)=>{
       if(currentPath === '/home') {
         link.nativeElement.style.color = "#fff";
+        this.navbar.nativeElement.style.backgroundColor = ""
+        
       }else{
         link.nativeElement.style.color = "#9D9DAA";
+        this.navbar.nativeElement.style.backgroundColor = "#F6F6F6"
       }
     })
   }
