@@ -123,6 +123,7 @@ export class NavbarComponent implements OnInit , AfterViewInit{
       .pipe(takeUntil(this.destroy$)) 
       .subscribe(() => {
         this.changeHomeColor(this.router.url);
+        this.updateNavColor();
       });
 
     }
@@ -130,6 +131,7 @@ export class NavbarComponent implements OnInit , AfterViewInit{
 
     ngAfterViewInit(): void {
         this.changeHomeColor(this.router.url);
+        this.updateNavColor();
     }
 
 
@@ -153,7 +155,6 @@ export class NavbarComponent implements OnInit , AfterViewInit{
       if(!this.linkEl || this.linkEl.length === 0) return;
       
       this.linkEl.forEach((link)=>{
-      console.log(link)
       if(currentPath === '/home') {
         link.nativeElement.style.color = "#fff";
       }else{
