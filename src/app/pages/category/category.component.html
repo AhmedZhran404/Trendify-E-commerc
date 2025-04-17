@@ -1,0 +1,238 @@
+
+<section class="mt-32">
+
+
+  <div class="max-w-7xl mx-auto breadcrumb mb-8">
+    <app-custom-breadcrumb [items]="breadcrumbItems"></app-custom-breadcrumb>
+  </div>
+
+    <div>
+        <div class="pr-8">
+            <h1 class="main-title">Category</h1>
+            <h2 class="second-title">Full Outfit</h2>
+        </div>
+ 
+        <div class="hidden lg:block w-full pt-8">
+
+            <div class="show-products-primeng">
+
+                <p-tabs [(value)]="ActiveTap" (valueChange)="onTabChange()"  class="mb-8">
+                  
+                    <p-tablist class="!overflow-x-auto !scrollbar-hide !whitespace-nowrap">
+                      @if(!categoryNameCreated){
+                        @for (tab of tabs; track tab.value) {
+                            <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+                        }
+                      }@else {
+                        @for(item of [1,2,3,4,5,6,7,8,9]; track $index){
+                          <p-skeleton height="2rem" styleClass="mb-2" id="sekelton" borderRadius="16px" width="7rem"/>
+                        }
+                      }
+                    </p-tablist>
+                </p-tabs>
+            </div>
+
+        </div>
+
+
+        <div class=" w-full sm:flex sm:justify-center md:justify-between max-w-7xl mx-auto px-2 lg:px-0">
+
+          
+          <div 
+          [class.-translate-x-full]="!isSidebarOpen"
+          [class.translate-x-0]="isSidebarOpen || screenIsLarge()" 
+          class="side-bar shadow-lg transform transition-transform duration-300 ease-in-out  md:transform-none md:shadow-none fixed top-0 left-0 h-full pl-4 pt-4 md:pl-0 md:pt-0  w-[75%] z-50 md:z-0 md:static md:w-[28%] aside">
+            <div [class.-translate-x-[50%]]="isSidebarOpen"  class="absolute top-1/2 -translate-y-1/2  left-full ml-2 z-50 block md:hidden">
+            <button 
+              (click)="toggleSidebar()"
+              class="flex items-center gap-2 bg-white border border-gray-300 shadow-md px-3 py-2 rounded-full text-main-color text-[16px] hover:bg-main-color hover:text-white transition-all duration-300"
+            >
+              <i class="fas fa-sliders"></i>
+              <span>Filter</span>
+            </button>
+          </div>
+
+
+          <div class="flex justify-between items-center">
+            <h3 class="pb-6 text-[20px] font-semibold">Filter By</h3>
+
+            <div class="flex justify-end md:hidden mb-4">
+              <button (click)="toggleSidebar()" class="text-main-color text-2xl">&times;</button>
+            </div>
+            
+          </div>
+
+                <div class="card flex justify-content-center mb-7">
+                    <p-accordion [activeIndex]="0">
+                        <p-accordionTab header="Category">
+                            <div class="show-products-primeng-2">
+                                <p-tabs [(value)]="ActiveTap" (valueChange)="onTabChange()"   class="mb-8">
+                                    <p-tablist class="">
+                                        @for (tab of tabs; track tab.value) {
+                                            <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+                                        }
+                                    </p-tablist>
+                                </p-tabs>
+                            </div>
+                         
+                        </p-accordionTab>
+                 
+                    
+                    
+                    
+                        <p-accordionTab header="Price">
+                          <div class="bg-white rounded-xl shadow-lg p-4 mr-4 space-y-6 border border-gray-100">
+                        
+                            
+                            <h3 class="text-xl font-semibold text-main-color text-center">
+                              Filter by Price
+                            </h3>
+                        
+                          
+                            <div class="card flex justify-center">
+                              <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="100" [max]="50000" [step]="100"  styleClass="w-56" />
+                            </div>
+                            
+                            <div class="flex justify-between text-[17px] font-medium px-2 text-gray-700">
+                              <span>
+                                <span class="text-gray-500">From:</span> {{ rangeValues[0]}}USD
+                              </span>
+                              <span>
+                                <span class="text-gray-500">To:</span> {{ rangeValues[1]}}USD
+                              </span>
+                            </div>
+                        
+                           
+                            <div class="flex justify-center">
+                              <button 
+                                (click)="filterProductsByRange()" 
+                                class="bg-main-color text-white font-semibold px-6 py-2 rounded-full shadow hover:shadow-md hover:bg-opacity-90 transition duration-200 w-full max-w-[220px]"
+                              >
+                                Apply Filter
+                              </button>
+                            </div>
+                        
+                          </div> 
+                        </p-accordionTab>
+                        
+                        
+                      </p-accordion>
+                </div>
+            </div>
+
+
+
+
+            
+            <div class="show-products-primeng w-full sm:w-[70%]">
+
+              <p-tabs [(value)]="ActiveTap" (valueChange)="onTabChange()"  class="mb-8">
+                <p-tabpanels>
+
+                  <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+                    <div>
+                      @if(productsToDisplay.length) {
+                        
+                              <h2 class="text-[20px] md:text-[30px] lg:text-[40px] font-semibold text-[#151411]">
+                                {{categoryName}} <span class="!text-[16px] text-main-color">({{productsToDisplay.length}})</span>
+                              </h2>
+                      }
+                      
+                    </div>
+                    <div class="card flex justify-center sort-menu">
+                      <p-menu #menu [model]="itemsOfSort" [popup]="true" />
+                      <p-button (click)="menu.toggle($event)"  icon="fa-solid fa-sort" label="Sorted By"/>
+                    </div>
+                  </div>
+
+                  
+                @for (tab of tabs; track tab.value) {
+                    <p-tabpanel class="w-full" [value]="tab.value">
+                      
+                      <ng-template pTemplate="header">
+                        {{ tab.title }}
+                      </ng-template>
+  
+                          @if (!dataDone) {
+                        
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              @for(item of loadingArray; track $index) {
+                                <app-loading-card></app-loading-card>
+                              }
+                            </div>
+                          }
+                           @if(pagedProducts.length > 0){
+                        
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              @for (prod of pagedProducts; track prod.id) {
+                                <app-card [title]="prod.title" [image]="prod.imageCover" [id]="prod.id" [price]="prod.price"  [inWishList]="wishListService.isInWishlist(prod.id)"></app-card>
+                              }
+                            </div>
+                          }
+                          @else {
+                          
+                            <div class="text-center py-12 flex flex-col items-center justify-center text-gray-600">
+                              <i class="fas fa-box-open text-6xl mb-4 text-gray-400"></i>
+                              <h1 class="text-2xl font-semibold mb-2">No Products Available</h1>
+                              <p class="text-md mb-4">Check back later!</p>
+                              <i class="fas fa-search text-xl animate-bounce text-gray-400"></i>
+                            </div>
+                          }
+                    </p-tabpanel>
+                  } 
+                </p-tabpanels>
+              </p-tabs>
+              
+             @if(pagedProducts.length > 0) {
+              <div class="paginator-Products">
+                <div class="card flex justify-center">
+                  <p-paginator
+                      (onPageChange)="onPageChange($event)"
+                      [first]="first"
+                      [rows]="rows"
+                      [totalRecords]="getTotalRecords()"
+                      [rowsPerPageOptions]="[6, 12, 24]">
+                    </p-paginator>
+                  </div>
+              </div>
+             }
+
+
+              </div>
+        </div>
+
+
+    </div>
+    
+
+</section>
+         
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

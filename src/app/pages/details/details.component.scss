@@ -1,0 +1,95 @@
+
+
+ .menueDetials {
+    .p-accordionheader {
+        background-color: var(--bg-color) !important;
+        color: var(--text-color) !important;
+        font-size: 20px !important;
+        font-weight: 500 !important;
+        border-bottom: 1px solid var(--2nd-text) !important;
+        padding-inline: 0px !important;
+        border-radius: 0px !important;
+    }
+
+    .p-accordioncontent-content {
+        background-color: var(--bg-color) !important;
+        padding: 12px 0px !important;
+        border-bottom: none !important;
+    }
+
+    .menueDetials .p-accordionheader{
+        font-size: 20px !important;
+        font-weight: 500 !important;
+    }
+    .p-rating-option-active .p-rating-icon{
+        color: #ffc000 !important;
+    }
+}
+:host ::ng-deep .swiper-wrapper {
+    max-height: 750px;
+  }
+  @media (min-width: 768px) {
+    :host ::ng-deep swiper-container {
+      height: 450px ;
+    }
+  }
+  @media (min-width: 790px) {
+    :host ::ng-deep swiper-container {
+      height: 470px ;
+    }
+  }
+  @media (min-width: 800px) {
+    :host ::ng-deep swiper-container {
+      height: 500px ;
+    }
+  }
+  @media (min-width: 850px) {
+    :host ::ng-deep swiper-container {
+      height: 550px ;
+    }
+  }
+  @media (min-width: 900px) {
+    :host ::ng-deep swiper-container {
+      height: 675px ;
+    }
+  }
+  @media (min-width: 1024px) {
+    :host ::ng-deep swiper-container {
+      height: 280px ;
+    }
+  }
+  @media (min-width: 1080px) {
+    :host ::ng-deep swiper-container {
+      height: 300px ;
+    }
+  }
+  @media (min-width: 1115px) {
+    :host ::ng-deep swiper-container {
+      height: 350px ;
+    }
+  }
+  @media (min-width: 1190px) {
+    :host ::ng-deep swiper-container{
+      height: 380px ;
+    }
+  }
+  @media (min-width: 1235px) {
+    :host ::ng-deep swiper-container{
+      height: 375px ;
+    }
+  }
+  @media (min-width: 1280px) {
+    :host ::ng-deep swiper-container{
+      height: 400px ;
+    }
+  }
+
+  .responsive-skeleton {
+    width: 30rem !important;
+  }
+  
+  @media (max-width: 768px) {
+    .responsive-skeleton {
+      width: 20rem !important; 
+    }
+  }

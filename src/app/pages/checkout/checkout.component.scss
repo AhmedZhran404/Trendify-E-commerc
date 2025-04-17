@@ -1,0 +1,75 @@
+/* Tailwind styling + minor tweaks */
+::ng-deep .custom-autocomplete .p-autocomplete-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    transition: border-color 0.3s ease;
+  }
+  
+  ::ng-deep .p-inputtext:focus{
+    border-color: var(--main-color) !important;
+  }
+  ::ng-deep .custom-autocomplete .p-autocomplete-input:focus {
+    border: 2px solid var(--main-color) !important;
+    outline: none !important;
+  }
+  
+  ::ng-deep .p-autocomplete{
+    width: 100% !important;
+  }
+  ::ng-deep .custom-autocomplete .p-autocomplete-dropdown {
+    background-color: var(--main-color);
+    color: white;
+  }
+
+  ::ng-deep .p-button{
+    background-color: var(--main-color) !important;
+    border-color:  white !important;
+  }
+  
+  ::ng-deep .p-button-secondary {
+   
+    color: white !important;
+    width: 100% !important;
+  }
+
+  ::ng-deep .p-dialog-content {
+    overflow: visible !important;
+  }
+
+
+  [type=radio]:checked {
+    background-color: var(--main-color) !important;
+  }
+
+  .cancelButton {
+    width: 45% !important;
+  }
+  .sendButton {
+    width: 45% !important;
+  }
+  ::ng-deep .p-ripple.p-button.p-component {
+    width: 100%;
+  }
+
+  ::ng-deep .p-button-icon-only.p-button-rounded {
+    width: 40px !important;
+  }
+
+
+  /*^ ============== Media Query =============^*/
+
+  @media screen and (min-width:900px) {
+    .big-container {
+      flex-direction: row !important;
+    }
+    .item-1 {
+      width: 55%;    
+    }
+    .item-2 {
+      width: 40%;
+    }
+  }
+
+
+
+

@@ -1,0 +1,301 @@
+<!-- !! =================== start home ================= -->
+
+<section class="relative min-h-screen">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent z-20 backdrop-blur-[2px]"></div>
+
+
+    <div class="absolute inset-0">
+        <img class="w-full h-full object-cover" src="./images/unsplash_jrQv0161nNM.png" alt="Home Image">
+    </div>
+
+    <div class="content-home absolute top-1/2 -translate-y-1/3 z-30 w-full">
+        <div  class="max-w-7xl m-auto text-start md:text-center lg:text-left pl-2 sm:pl-0">
+            <h1  class="text-white text-2xl sm:text-3xl lg:text-[3.125rem] !leading-[100%] font-semibold tracking-tight">
+                Elevate Your Home with <br class="hidden lg:block"> Stylish Furniture
+            </h1>
+
+            <div class="beati-img w-[60%] lg:mx-0">
+                <img src="./images/image11.png" class="w-[150px] lg:w-[155px] mx-auto" alt="">
+            </div>
+
+            <p class="font-medium text-sm sm:text-base lg:text-[18px] text-white py-4 sm:py-6 leading-relaxed">
+                Explore a range of high-quality, affordable furniture designed to 
+                <br class="hidden lg:block"> transform any room. Discover the perfect blend of style, comfort, 
+                <br class="hidden lg:block"> and functionality for your space.
+            </p>
+
+            <div class="spicial-1 flex flex-col items-start md:items-center lg:items-start">
+                <button class="w-[270px] h-[55px] text-[20px] rounded-full bg-main-color font-medium text-white">
+                    Shop Now
+                </button>
+            </div>
+
+            <div class="img-arrow relative spicial-2 w-full max-w-[60%] mx-auto bottom-5 flex flex-col lg:items-start md:items-center items-start text-white">
+                <div>
+                    <img class="w-[100px] block" src="./images/image33.png" alt="">
+                </div>
+                <div class="content absolute top-[55%] xl:left-[35%] lg:left-[45%] md:left-[65%]">
+                    <p class="text-center flex items-center gap-1 text-white">
+                        <span class="text-[24px] sm:text-[28px] font-bold border-r pr-2">4.8</span>
+                        <i class="fa-solid fa-star text-[12px] sm:text-[14px]"></i>
+                        <i class="fa-solid fa-star text-[12px] sm:text-[14px]"></i>
+                        <i class="fa-solid fa-star text-[12px] sm:text-[14px]"></i>
+                        <i class="fa-solid fa-star text-[12px] sm:text-[14px]"></i>
+                        <i class="fa-solid fa-star-half-stroke text-[12px] sm:text-[14px]"></i>
+                     
+                    </p>
+                    <p class="text-center font-tendify-anchor text-[20px] sm:text-[16px]">
+                        150k Total Review
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- !! =================== End home ================= -->
+
+
+ <!-- && =================== start home-owl-slider-1 ================= -->
+<section id="changeColorNav">
+    <div class="max-w-7xl mx-auto pt-10  relative">
+        
+        <div (click)="prevSlide()" class="btn-slider-1 cursor-pointer hover:bg-main-color group xl:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute left-[-4%] top-[50%] -translate-y-1/2 z-10 p-2">
+            <button class="text-[#8B5E35]">
+                <i class="group-hover:text-white fa-solid fa-chevron-left text-lg"></i>
+            </button>
+        </div>
+
+        <owl-carousel-o #owlCarousel1 [options]="customOptions1">
+            @for (category of categorys; track $index) {
+                <ng-template #owlElement carouselSlide>
+                    <div class="testimonial-card w-fit mx-auto">
+                        @if(!loading) {
+                            <div>
+                                <div class="w-[100px] h-[100px]">
+                                    <img class="object-cover w-full h-full rounded-full" [src]="category.image" [alt]="category.name">
+                                </div>
+                                <p class="pt-4 text-center text-[18px] font-medium">
+                                    {{category.name.split(" ", 1).join(" ")}}
+                                </p>
+                            </div>
+                        }@else {
+                            
+                            <p-skeleton shape="circle" size="5rem"/>
+                        }
+                    </div>
+                </ng-template>
+            }
+        </owl-carousel-o>
+
+        <div (click)="nextSlide()" class="btn-slider-1 cursor-pointer hover:bg-main-color group xl:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute right-[-4%] top-[50%] -translate-y-1/2 z-10 p-2">
+            <button class="text-[#8B5E35]">
+                <i class="group-hover:text-white fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+        
+    </div>
+</section>
+<!-- && =================== End home-owl-slider-1 ================= -->
+
+
+<!-- && =================== start home-owl-slider-2 =============== -->
+<section class="relative home-slider-owl py-10">
+
+    <div (click)="prevSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute left-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
+        <button class="text-[#8B5E35]">
+            <i class="text-main-color fa-solid fa-chevron-left text-lg"></i>
+        </button>
+    </div>
+
+    <owl-carousel-o #owlCarousel2 [options]="customOptions2">
+        @for (img of imgs; track $index) {
+            <ng-template carouselSlide>
+                <div class="testimonial-card h-[500px] relative">
+                    <img class="w-full h-full object-cover" [src]="img" alt="image">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none"></div>
+                </div>
+            </ng-template>
+        }
+    </owl-carousel-o>
+
+    <div class="w-full absolute  top-[50%] -translate-y-1/2  z-20">
+        <div class=" max-w-7xl mx-auto pl-2 sm:pl-0">
+            <p class="font-semibold text-[44px] text-white">Upgrade your Style</p>
+            <p class="font-medium text-[32px] text-white">
+                Up to 50% off on all <br> clothing and accessories!
+            </p>
+            <div class="pt-6">
+                <button class="w-[168px] h-[48px] text-[20px] rounded bg-main-color font-medium text-white">
+                    Shop Now
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div (click)="nextSlide1()" class="cursor-pointer bg-white group md:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-main-color hidden absolute right-[2%] top-[50%] -translate-y-1/2 z-30 p-2">
+        <button class="text-[#8B5E35]">
+            <i class="text-main-color fa-solid fa-chevron-right text-lg"></i>
+        </button>
+    </div>
+
+</section>
+<!-- && =================== End home-owl-slider-2 ================= -->
+
+
+<!-- && ============== start Flash Sale ================-->
+<section class="py-10 show-products-primeng max-w-7xl mx-auto px-2 sm:px-0">
+    <div class="mb-6 px-4">
+        <h1 class="text-[32px] text-main-color font-tendify-anchor text-center">Flash Sale</h1>
+        <p class="text-[40px] font-semibold text-text-color text-center">
+            Grab Them Before They're Gone!
+        </p>
+    </div>
+
+
+    <div class="card mb-5">
+        <p-tabs>
+            <p-tabpanels>
+                <p-tabpanel class="w-full">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        @for (randomProduct of randomProducts; track randomProduct.id) {
+                            <app-card [title]="randomProduct.title" [image]="randomProduct.imageCover" [id]="randomProduct.id" [price]="randomProduct.price" [inWishList]="wishListService.isInWishlist(randomProduct.id)"></app-card>
+                        }
+                    </div>
+                </p-tabpanel>
+            </p-tabpanels>
+        </p-tabs>
+    </div>
+
+
+    <div class="text-center mt-6">
+        <button routerLink="/products" class="w-[140px] h-[46px] font-medium text-[18px] rounded-[2rem] border border-main-color text-main-color flex items-center justify-center gap-2 mx-auto hover:text-white hover:bg-main-color transition-all duration-150">
+            See All <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+<!-- && ============== End Flash Sale ================-->
+
+
+
+<!-- && ================= new Collection ================ -->
+<section class=" py-10 max-w-7xl mx-auto px-2 sm:px-0">
+
+    <div class="pb-6 text-center">
+        <h1 class="main-title">New Collection</h1>
+        <p class="second-title">Check the new Collection</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="relative rounded-xl overflow-hidden h-[518px]">
+            <img src="./images/unsplash_mB-SwZFP1kQ.png" alt="Shoes" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white">
+                <h3 class="text-xl font-semibold">Shoes</h3>
+                <p class="text-sm">UP TO 50% OFF</p>
+            </div>
+        </div>
+        <div class="grid grid-rows-2 gap-4">
+            <div class="relative rounded-xl overflow-hidden h-[250px]">
+                <img src="./images/bags.jpg" alt="Bags" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white">
+                    <h3 class="text-xl font-semibold">Bags</h3>
+                    <p class="text-sm">UP TO 50% OFF</p>
+                </div>
+            </div>
+            <div class="relative rounded-xl overflow-hidden h-[250px]">
+                <img src="./images/unsplash_Dli2lIXQiJc.png" alt="Accessories" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white">
+                    <h3 class="text-xl font-semibold">Accessories</h3>
+                    <p class="text-sm">UP TO 40% OFF</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    
+  
+    -->
+
+</section>
+<!-- && ================= new Collection ================ -->
+
+
+
+<!-- && ================= Best selling products  ==============-->
+<section class="py-20  show-products-primeng">
+    <div class="max-w-7xl m-auto pb-8">
+        <h1 class="main-title">Products</h1>
+        <h2 class="second-title">Best Selling Product</h2>
+    </div>
+    
+    <div class="max-w-7xl m-auto card mb-5 px-2 sm:px-0">
+        <p-tabs [(value)]="ActiveTap">
+            <p-tablist class="!overflow-x-auto !scrollbar-hide !whitespace-nowrap">
+                @for (tab of tabs; track tab.value) {
+                    <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+                }
+            </p-tablist>
+            <p-tabpanels>
+                @for (tab of tabs; track tab.value) {
+                    <p-tabpanel class="w-full" [value]="tab.value">
+                        <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            @for (card of tab.cards; track card.title) {
+                                <app-card [title]="card.title" [image]="card.imageCover" [id]="card.id" [price]="card.price" [inWishList]="wishListService.isInWishlist(card.id)"></app-card>
+                            }
+                        </div>
+                    </p-tabpanel>
+                }
+            </p-tabpanels>
+        </p-tabs>
+    </div>
+    
+    <div class="text-center">
+        <button routerLink="/products" class="w-[8.9375rem] h-[46px] font-medium text-[18px] rounded-[2rem] border border-main-color text-main-color hover:text-white hover:bg-main-color transition-all duration-150">
+            See All <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+<!-- && ================= Best selling products  ==============-->
+
+
+
+<!-- && =================== Top Products ==============  -->
+<section class="py-8 ">
+    <div class="max-w-7xl m-auto pb-6 text-center px-4">
+        <h1 class="main-title text-[28px] sm:text-[32px]">Top Products</h1>
+        <h2 class="second-title text-[22px] sm:text-[26px] md:text-[30px] font-semibold text-text-color">
+            Top Picks for You!
+        </h2>
+    </div>
+
+    <div class="max-w-7xl m-auto px-2 sm:px-0">
+        <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            @for (prod of randomProductsTop; track prod.title) {
+                <app-card [title]="prod.title" [image]="prod.imageCover" [id]="prod.id" [price]="prod.price" [inWishList]="wishListService.isInWishlist(prod.id)"></app-card>
+            }
+        </div>
+    </div>
+    
+    <div class="pt-6 text-center">
+        <button routerLink="/products"
+            class="w-auto px-6 h-[46px] font-medium text-[16px] sm:text-[18px] rounded-[2rem] border border-main-color text-main-color flex items-center justify-center gap-2 mx-auto hover:text-white hover:bg-main-color transition-all duration-150">
+            See All <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+<!-- && =================== Top Products ==============  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

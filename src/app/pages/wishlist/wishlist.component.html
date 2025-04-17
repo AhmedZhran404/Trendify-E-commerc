@@ -1,0 +1,140 @@
+<section class="mt-24 max-w-7xl mx-auto px-2 xl:px-0 pb-6">
+
+    <div class="breadcrumb mb-8">
+        <app-custom-breadcrumb [items]="breadcrumbItems"></app-custom-breadcrumb>
+    </div>
+
+
+  
+        <h1 class="text-3xl text-text-color mb-4 flex  flex-row items-center gap-2">
+            Wish List 
+         
+              <span class="font-medium text-[16px] md:text-[18px] text-main-color">
+                {{ product.count}} items
+              </span>
+        </h1>
+  
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        
+        @if (isloading) {
+
+            @for(item of [1,2,3 ,4 ,5 ,6]; track $index){
+              <div class="flex flex-col  gap-4 mb-4 w-full">
+               <app-loading-card></app-loading-card>
+              </div>
+            }
+         }
+        @else if (product.count) {
+
+              @for (prod of product.data; track $index) {
+                  <!-- <div class="py-5 px-4 bg-white shadow-lg rounded-md flex flex-col lg:flex-row  gap-4  items-center justify-between">
+                    <div class="flex items-center justify-between w-full md:justify-start gap-3 ">
+                      <div class="w-[30%]  md:w-[40%] md:h-[150px] ">
+                          <img class="w-[100%] h-[100%] rounded-lg object-cover border border-main-color" [src]="prod.imageCover" [alt]="prod.title">
+                      </div>
+                      <div class="w-[50%]">
+                          <p class="font-medium pb-4">{{prod.category.name}}</p>
+                          <p class="font-medium">{{ prod.title.split(' ').slice(0, 3).join(' ')}}</p>
+                          <span>
+                              {{prod.ratingsAverage}}
+                              <i  class="ml-2 fa-solid fa-star text-[#ffc000]"></i>
+                          </span>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between w-full lg:justify-start">
+                      <button (click)="removeItemFromWishList(prod.id)" class="p-2 border border-main-color mr-2 rounded-lg w-[20%]">
+      
+                          <i [class.hidden]="loadingremoveId === prod.id" class="fa-solid fa-trash text-main-color"></i>
+                          <i [class.hidden]="loadingremoveId !== prod.id" class="fas fa-spin fa-spinner text-main-color"></i>
+                      </button>
+                      <button (click)="addToCartFromWishList(prod.id)" class="w-[70%] bg-white  border-main-color text-main-color py-3 px-5 rounded-lg font-bold border hover:text-white hover:bg-main-color transition-all duration-100">
+                       
+                              
+                          <i [class.hidden]="loadingId !== prod.id" class="fas fa-spin fa-spinner"></i>
+                          <span [class.hidden]="loadingId === prod.id">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Add To Cart
+                          </span>
+                      </button>
+                    </div>
+                  </div> -->
+      
+                  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden w-full max-w-4xl mx-auto flex flex-col md:flex-row md:justify-between">
+  
+                    <!-- صورة المنتج -->
+                    <div class="md:w-1/3 w-full h-[150px] md:h-[200px]">
+                      <img 
+                        [src]="prod.imageCover" 
+                        [alt]="prod.title" 
+                        class="w-full h-full object-cover border-r md:border-none border-main-color"
+                      />
+                    </div>
+                  
+                    <!-- التفاصيل + الأزرار -->
+                    <div class=" flex flex-col items-center justify-center p-5 w-full md:w-[70%]">
+                      
+                      <!-- التفاصيل -->
+                      <div class="mb-4">
+                        <p class="text-sm text-gray-400">{{ prod.category.name }}</p>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">
+                          {{ prod.title.split(' ').slice(0, 5).join(' ') }}
+                        </h2>
+                  
+                        <div class="flex items-center gap-1 text-yellow-500 font-medium">
+                          <span>{{ prod.ratingsAverage }}</span>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+                      </div>
+                  
+                      <!-- الأزرار -->
+                      <div class="flex flex-row justify-center  items-center w-full gap-3">
+                        
+                     
+                        <button
+                          (click)="removeItemFromWishList(prod.id)"
+                          class="w-[45%] sm:w-auto px-5 py-2 border border-main-color text-main-color hover:bg-main-color  hover:text-white rounded-lg transition-all duration-200"
+                        >
+                          <i [class.hidden]="loadingremoveId === prod.id" class="fa-solid fa-trash"></i>
+                          <i [class.hidden]="loadingremoveId !== prod.id" class="fas fa-spin fa-spinner"></i>
+                        </button>
+                  
+                        <!-- زر الإضافة -->
+                        <button
+                          (click)="addToCartFromWishList(prod.id)"
+                          class="w-full sm:w-auto px-5 py-2 bg-main-color text-white hover:bg-opacity-90 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
+                        >
+                          <i [class.hidden]="loadingId !== prod.id" class="fas fa-spin fa-spinner"></i>
+                          <span [class.hidden]="loadingId === prod.id">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Add To Cart
+                          </span>
+                        </button>
+                  
+                      </div>
+                    </div>
+                  
+                  </div>
+                  
+                  
+            }
+                
+        }
+        
+        
+    </div>
+    @if(product.count === 0) {
+        <div class="w-[100%] grid grid-col-1">
+            <div class="flex flex-col items-center justify-center py-20 text-center text-gray-600">
+                <i class="fa-solid fa-heart-crack text-6xl text-main-color mb-4"></i>
+                <h2 class="text-2xl font-semibold mb-2">Your Wishlist is empty</h2>
+                <p class="mb-4">You haven’t added any products yet.</p>
+                <a routerLink="/products/category" class="bg-main-color text-white px-6 py-3 rounded-lg hover:bg-main-color/90 transition-all cursor-pointer">
+                  Browse Products
+                </a>
+              </div>
+           </div>   
+    }
+ 
+</section>

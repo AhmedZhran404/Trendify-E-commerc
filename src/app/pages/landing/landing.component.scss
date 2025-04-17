@@ -1,0 +1,141 @@
+/* =============== Global Style =============*/
+.main-title {
+    @apply font-bold  text-[26px] text-center text-main-color;
+    font-family: "Caveat", cursive;
+}
+
+.second-title {
+    @apply text-text-color text-center text-[30px] md:text-[40px] font-semibold;
+}
+
+// app-landing {
+//     background-color: var(--bg-color);
+// }
+/* =============== Global Style =============*/
+
+/* custom style on toster alert*/
+
+
+
+/* custom style on toster alert*/
+
+
+/* ========== Customize on tabs of primeng ============*/
+.show-prodct-landing {
+    .p-tablist-tab-list {
+        background-color: #eeeeee !important;
+        justify-content: center !important;
+        border-radius: 50px !important;
+        border: none !important;
+        width: fit-content !important;
+        margin: auto !important;
+        padding: 8px 15px !important;
+        display: flex !important;
+        gap: 10px !important; 
+        margin-bottom: 25px !important;
+    }
+    
+    .p-tab-active {
+        background-color: var(--main-color) !important;
+        color: white !important;
+        border-radius: 50px !important;
+        border-bottom: none !important;
+        padding: 8px 20px !important;
+        font-weight: bold !important;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .p-tab {
+        border: none !important;
+        font-size: 18px !important;
+        transition: 0.3s ease-in-out !important;
+        padding: 8px 15px !important;
+    }
+    
+    .p-tab:not(.p-tab-active):not(.p-disabled):hover {
+        color: var(--2nd-text) !important;
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        border-radius: 50px !important;
+    }
+    
+    .p-tabpanels {
+        background-color: var(--bg-color) !important;
+        color: #000 !important;
+        padding: 0px !important;
+        border-radius: 10px !important;
+
+    }
+    
+    .p-tablist-active-bar {
+        height: 0px !important;
+    }
+}
+
+/* ========== Customize on tabs of primeng ============ublic/images/unsplash_nimElTcTNyY.png */
+/* ========== section #### ============ */
+
+  .customer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .owl-carousel .owl-item img {
+    width: 40px !important;
+  }
+  
+
+
+/* ========== section #### ============ */
+
+
+
+
+// ^ ========= Media Query =============
+
+
+@media screen and (max-width: 640px) {
+    #header .w-\[85\%\] {
+        width: 60%;
+    }
+    #header .w-\[18\.9375rem\] {
+        width: 223px;
+    }
+
+    #header div.button {
+        margin: auto;
+    }
+
+    #header h1 {
+        font-size: 45px;
+    }
+
+    .p-tabpanels {
+        padding: 0px !important;
+        width: 100% !important;
+    }
+    
+}
+
+@media screen and (min-width: 1287px) {
+    .btn-testimonial-landing {
+        display: block;
+    }
+
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+<section class="flex items-center bg-bg-color">
+    <div class="lg:w-[50%] w-[100%] md:w-[70%] md:mx-auto  h-screen overflow-y-auto custom-scroll  px-[60px] py-[24px]">
+
+            <h1 class="text-center lg:text-start text-[2rem] font-semibold leading-[3rem] text-text-color">Welcome Back!</h1>
+            <p class="text-[18px] text-center lg:text-start  leading-[1.6875rem] text-2nd-text">Please login or sign up to continue our opp</p>
+            <form class="pt-4" [formGroup]="LoginForm" (ngSubmit)="submitForm()" >
+
+                <div class="mb-2">
+                    
+                    <div class="mb-2">
+                        @let email = LoginForm.get('email');
+                        <label for="email" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+                            E-mail
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+                            <input formControlName="email" type="email" id="email"
+                             class="bg-bg-color border font-medium border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10  placeholder:text-2nd-text" 
+                                placeholder="Enter Your Email..." />
+                        </div>
+
+                        @if(email?.errors && email?.touched) 
+                        {
+                            <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                </svg>
+                                <ul>
+                                    @if(email?.getError('required')){
+                                        <li>email is required</li>
+                                    } 
+                                    @else if (email?.getError('email')) {
+                                        <li>Enter A Vaild E-mail</li>
+                                    }
+                                </ul>
+                              </div>
+                        }
+                    </div>
+                 
+                
+                    <div class="mb-2">
+                        @let password = LoginForm.get('password');
+                        <label for="password" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+                            <input formControlName="password"     [type]="isPasswordVisible ? 'text' : 'password'" id="password" 
+                                class="bg-bg-color font-medium border  placeholder:text-2nd-text border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10 leading-normal" 
+                                placeholder="Enter a valid Password..." />
+                                <i (click)="togglePasswordVisibility()"  class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isPasswordVisible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+                        </div>
+
+                        @if(password?.errors && password?.touched) 
+                        {
+                            <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                </svg>
+                                <ul>
+                                    @if(password?.getError('required')){
+                                        <li>password is required</li>
+                                    } 
+                                    @else if (password?.getError('pattern')) {
+                                        <li>start with a capital letter and be at least 8 characters.</li>
+                                    }
+                                </ul>
+                              </div>
+                        }
+                        
+                        
+                    </div>
+                        
+                 
+
+                    <div class="flex items-center justify-between py-2">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="remember" class="rounded border border-main-color checked:text-main-color">
+                            <label for="remember" class="text-[15px] leoding-[22.5px] text-main-color">Remember Me</label>
+                        </div>
+                        <div>
+                            <p routerLink="/forgot" class="cursor-pointer text-main-color underline">Forgot Password?</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                
+                <div>
+
+                    <button class="bg-main-color rounded-full w-[100%] h-[45px] text-white">
+                        
+                     <span [class.hidden] = "isloading">Login</span>
+                     <i  [class.hidden] = "!isloading" class="fas fa-spin fa-spinner"></i>
+                    
+                    </button>
+                    
+                    <p class="leading-[1.4063rem] text-[15px] text-2nd-text text-center font-medium pt-2">Or Continue With</p>
+
+                </div>
+                
+            </form>
+            
+            <div class="flex items-center justify-center gap-4 mt-3">
+                <div>
+                    <img src="./images/icons8-google-48.png" class="w-[30px] h-[30px] cursor-pointer" alt="google photo">
+                </div>
+                <div>
+                    <img src="./images/icons8-facebook-48.png" class="w-[30px] h-[30px] cursor-pointer" alt="facebook">
+                </div>
+                <div>
+                    <img src="./images/icons8-apple-50.png" class="w-[30px] h-[30px] cursor-pointer" alt="">
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <p class="text-[18px] leading-[27px] font-medium text-2nd-text">Don’t have an account ? <a routerLink="/register"  class="text-main-color underline cursor-pointer">Sign up</a></p>
+            </div>
+                            
+    </div>
+
+
+
+
+
+
+    <div class="hidden lg:block w-[50%] relative h-screen">
+
+        <swiper-container
+                class="mySwiper"
+                speed="600"
+                parallax="true"
+                loop="true"
+                pagination-clickable="true"
+                pagination="true"
+                spaceBetween="0"
+        >
+
+        <swiper-slide><img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_SXck496Sg54.png" alt=""></swiper-slide>
+        <swiper-slide><img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_krZnZodbOy4.png" alt=""></swiper-slide>
+        <swiper-slide><img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_jrQv0161nNM.png" alt=""></swiper-slide>
+      </swiper-container>
+
+      <div class="absolute z-50 bottom-40 left-[50%] transform -translate-x-1/2">
+        <h1 class="text-[32px] font-bold leading-[27px] text-white text-center">
+            Welcome to Trendify
+        </h1>
+        <p class="font-medium text-[20px] leading-[30px] text-white text-center">
+            Discover the latest trends, express your unique style
+        </p>
+      </div>
+
+          
+    </div>
+</section>

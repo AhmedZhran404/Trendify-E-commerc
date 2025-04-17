@@ -1,0 +1,76 @@
+
+
+
+    .p-menu-item-link  {
+        color: var(--text-color) !important;
+    }
+    .p-menu-submenu-label {
+        color: var(--text-color) !important;
+        font-weight: 600 !important;
+        font-size: 18px !important;
+    }
+
+    .menu-nav-landing {
+        .p-button  {
+            background-color: transparent !important;
+            border: none !important;
+        }
+        .p-button-icon, .p-button-icon:before, .p-button-icon:after {
+            color: var(--2nd-text) !important;
+        }
+        .p-button-label {
+            color:var(--2nd-text) !important;
+        }
+    }
+
+
+    .changepassnavbar {
+        .p-button {
+            background-color: var(--main-color) !important;
+            border: none !important;
+            
+        } 
+        .p-button-label  {
+            border: none !important;
+            color: white !important;
+        }
+    }
+
+
+@media screen and (min-width: 850px) {
+    .login {
+        width: 110px;
+        height: 30px;
+        border: 1px solid var(--main-color);
+    }
+
+    .register {
+        width: 110px;
+        height: 30px;
+        color: white;
+        background-color: var(--main-color);
+    }
+}
+@media screen and (max-width: 930px) {
+    .buttonAuth {
+        display: none !important;
+    }
+    .menu-nav-landing {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 750px) {
+        .navLinks a {
+            color: var(--2nd-text) !important;
+        }
+ 
+    }
+    
+    .navLinks a.router-active {
+        color: var(--main-color) !important;
+      }
+
+      .no-transition {
+        transition: none !important;
+      }

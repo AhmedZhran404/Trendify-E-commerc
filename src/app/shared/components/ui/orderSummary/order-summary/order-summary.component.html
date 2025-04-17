@@ -1,0 +1,63 @@
+<div class="bg-white shadow-lg rounded-xl p-6 w-full border border-[#D1D1D8]">
+           
+    <h2 class="text-[24px] font-medium mb-6 text-text-color">Order Summary</h2>
+  
+  
+    <div class="flex justify-between mb-4">
+      <p class="text-text-color">Price</p>
+      <p class="text-text-color font-medium">{{totalCartPrice}}</p>
+    </div>
+  
+ 
+    <div class="flex justify-between mb-4">
+      <p class="text-text-color">Discount</p>
+      <p class="text-text-color font-medium">20%</p>
+    </div>
+  
+  
+    <div class="flex justify-between mb-4">
+      <p class="text-text-color">Shipping</p>
+      <p class="text-[#8B5E35] font-medium">{{valueOfMoneyMethod()}}</p>
+    </div>
+
+    <div class="flex justify-between mb-4">
+      <p class="text-text-color">Coupon Applied</p>
+      <p class="text-text-color font-medium">0.00EGP</p>
+    </div>
+  
+    <div class="border-b border-gray-300 my-4"></div>
+  
+    
+    <div class="flex justify-between mb-6">
+      <p class="text-text-color font-semibold">TOTAL</p>
+      
+          <p class="text-text-color font-semibold">{{totalCartPrice - (totalCartPrice * (20/100))}}</p>
+      
+    
+    </div>
+  
+  
+    <div class="flex justify-between mb-6">
+    <p class="text-text-color font-medium text-[14px] mb-2">Estimated Delivery by</p>
+    <p class="font-medium mb-6">01 Feb, 2023</p>
+    </div>
+   
+    <div class="flex mb-6 rounded-md w-full relative">
+      <input 
+        type="text" 
+        placeholder="Coupon Code" 
+        class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-[#8B5E35] w-full" 
+      />
+      <button class="bg-[#8B5E35] text-white px-4 py-2 rounded-lg hover:bg-[#6e4728] transition absolute top-[10%] left-[100%] -translate-x-20">Apply</button>
+    </div>
+  
+  @if(InCart()){
+    <button  (click)="emitEvent()" class="w-full rounded-[32px] bg-[#8B5E35] text-white py-3  text-[20px] font-semibold hover:bg-[#6e4728] transition">
+      Proceed to Checkout
+    </button>
+  } @else {
+    <button  [routerLink]="['/products/checkout' , id]" class="w-full rounded-[32px] bg-[#8B5E35] text-white py-3  text-[20px] font-semibold hover:bg-[#6e4728] transition">
+      Proceed to Checkout
+    </button>
+  }
+  </div>

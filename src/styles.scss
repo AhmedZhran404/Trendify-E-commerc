@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@import 'ngx-toastr/toastr';
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+
+// main-color in website
+:root {
+    --main-color:#8B5E35;
+    --second-color:#9B7E5C;
+    --text-color:#090F41;
+    --2nd-text: #9D9DAA;
+    --bg-color:#F6F6F6;
+    --card-color:#FFFFFF;
+    --review-color:#FFC000;
+    --error-color:#D00439; 
+    --footer-bg:#2E2E2E;
+}
+
+
+
+
+swiper-container {
+    --swiper-pagination-color: var(--main-color);
+    --swiper-pagination-bullet-width: 20px;
+    --swiper-pagination-bullet-active-width: 25px;
+    --swiper-pagination-bullet-border-radius: 10px;
+    --swiper-pagination-bullet-height: 4px;
+    --swiper-pagination-bottom: 108px;
+    --swiper-pagination-bullet-inactive-color: #fff;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+    --swiper-pagination-bullet-vertical-gap: 4px;
+}
+  
+
+body {
+    background-color: var(--bg-color);
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+
+

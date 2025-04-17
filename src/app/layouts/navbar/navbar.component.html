@@ -1,0 +1,312 @@
+
+<nav 
+
+[ngClass]="{'!bg-bg-color transition-all duration-300 ease-in-out': isScrolled(),
+  'bg-transparent': !isLogin(),
+  'bg-bg-color': isLogin(),
+}"
+class="bg-transparent   px-2 xl:px-0 fixed shadow-md top-0 left-0 w-full z-50">
+
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
+    <a [routerLink]="navCondition() ? '/landing' : '/home'"  
+     class="text-main-color w-[50%] sm:w-[30%] md:w-fit  leading-[2.68rem] text-[32px] font-tendify-anchor font-semibold whitespace-nowrap">Trendify</a>
+
+
+  <div class="flex w-[50%] sm:w-[70%] md:w-fit justify-end md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+    @if(!isLogin()) 
+    {
+
+      <ul class="flex items-center justify-center gap-7">
+        <li
+        routerLink="/wishlist"
+        
+        class="cursor-pointer relative ">
+          <i 
+          #navLink
+          routerLinkActive="!text-main-color"
+          class="fa-regular fa-heart  text-[24px]"></i>
+          <span
+          class="absolute -top-3 -right-4 bg-main-color text-white text-xs min-w-[1.5rem] h-6 px-1 flex items-center justify-center rounded-full font-bold shadow-md border border-white"
+        >
+          {{ wishListCount() }}
+        </span>
+        
+
+        </li>
+        <li 
+        routerLink="/products/cart" 
+    
+        class="cursor-pointer relative">
+
+          <i 
+          #navLink
+           class=" fa-solid fa-cart-shopping   text-[20px]"></i>
+          <span
+          class="absolute -top-3 -right-4 bg-main-color text-white text-xs min-w-[1.5rem] h-6 px-1 flex items-center justify-center rounded-full font-bold shadow-md border border-white"
+        >
+          {{ countCart() }}
+        </span>
+        
+
+        </li>
+        <li class="cursor-pointer relative navbar-menu">
+          <i
+          #navLink 
+          class="fa-solid fa-user xl:px-3  text-[20px]" (click)="menu.toggle($event)"></i>
+          <p-menu #menu [model]="itemsHome" popup appendTo="body"></p-menu>
+        </li>
+      </ul>
+
+    }
+
+
+    @if(isLogin()) {
+      <ul class="buttonAuth flex items-center space-x-4">
+ 
+          <li
+            routerLink="/login"
+            
+            class="login cursor-pointer text-lg     md:font-normal md:text-base     lg:!w-[130px] lg:!h-[40px]  md:rounded-full  text-main-color md:flex justify-center items-center">Login</li>
+          <li 
+          routerLink="/register"
+          class="register  text-lg  cursor-pointer text-main-color   md:font-normal  md:text-base  lg:!w-[130px] lg:!h-[40px]   md:rounded-full   md:flex justify-center items-center">Sign Up</li>
+      </ul>
+      <div class="menu-nav-landing hidden">
+        <p-menu #menu [model]="itemsLanding" [popup]="true" />
+        <p-button  (click)="menu.toggle($event)" label="Auth" icon="fa-solid fa-user"/>
+      </div>
+    }
+
+   
+      <button
+      #navLink 
+      (click)="toggleMenu()"
+      type="button"
+      class="btn-bars mr-2 text-[30px] order-2 inline-flex p-2 w-10 h-10 justify-center items-center text-sm  rounded-lg    md:hidden"
+      aria-controls="navbar-default"
+      aria-expanded="false"
+    >
+      
+      @if (!isMenuVisible) {
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"
+        />
+      </svg>
+      }@else {
+      <i class="fa-solid fa-xmark text-3xl"></i>
+      }
+    </button>
+    
+  </div>
+  <div class="card flex justify-center">
+    <form  [formGroup]="changePassword" (ngSubmit)="ResetPassword()">
+
+      <p-dialog header="Change Password" [modal]="true" [(visible)]="visible" [style]="{ width: '35rem' }">
+          <div class="flex flex-col  mb-2">
+            @let currentpassword = changePassword.get('currentPassword');
+            <label for="oldpassword" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+             Old Password
+          </label>
+          <div class="relative">
+              <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+              <input formControlName="currentPassword"     [type]="isPasswordVisibleOld ? 'text' : 'password'" id="oldpassword" 
+                  class="bg-bg-color font-medium border  placeholder:text-2nd-text border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10 leading-normal" 
+                  placeholder="Enter a valid Password..." />
+                  <i (click)="togglePasswordVisibility('currentPassword')"  class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isPasswordVisibleOld ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+          </div>
+
+          @if(currentpassword?.errors && currentpassword?.touched) 
+          {
+              <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                  </svg>
+                  <ul>
+                      @if(currentpassword?.getError('required')){
+                          <li>Current password is required</li>
+                      } 
+                      @else if (password?.getError('pattern')) {
+                          <li>start with a capital letter and be at least 8 characters.</li>
+                      }
+                  </ul>
+                </div>
+          }
+          </div>
+          <div class="flex  flex-col  mb-4">
+            @let password = changePassword.get('password');
+            <label for="newpassword" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+              New Password
+          </label>
+          <div class="relative">
+              <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+              <input formControlName="password"    [type]="isPasswordVisibleNew ? 'text' : 'password'" id="newpassword" 
+                  class="bg-bg-color font-medium border  placeholder:text-2nd-text border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10 leading-normal" 
+                  placeholder="Enter a valid Password..." />
+                  <i (click)="togglePasswordVisibility('newPassword')"  class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isPasswordVisibleNew ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+          </div>
+          @if(password?.errors && password?.touched) 
+          {
+              <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                  </svg>
+                  <ul>
+                      @if(password?.getError('required')){
+                          <li>Current password is required</li>
+                      } 
+                      @else if (password?.getError('pattern')) {
+                          <li>start with a capital letter and be at least 8 characters.</li>
+                      }
+                  </ul>
+                </div>
+          }
+          </div>
+
+          <div class="flex  flex-col  mb-4">
+            @let rePassword = changePassword.get('rePassword');
+            <label for="comfirmpassword" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+            comfirm Password
+          </label>
+          <div class="relative">
+              <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+              <input formControlName="rePassword"    [type]="isPasswordVisiblecomfirm ? 'text' : 'password'" id="comfirmpassword" 
+                  class="bg-bg-color font-medium border  placeholder:text-2nd-text border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10 leading-normal" 
+                  placeholder="Enter a valid Password..." />
+                  <i (click)="togglePasswordVisibility('rePassword')"  class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isPasswordVisiblecomfirm ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+          </div>
+
+
+          @if(rePassword?.errors && rePassword?.touched || changePassword.getError('mismatch')) 
+          {
+              <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                  </svg>
+                  <ul>
+                      @if(rePassword?.getError('required')){
+                          <li>Current password is required</li>
+                      } 
+                      @else if (changePassword.getError('mismatch')) {
+                          <li>Enter a comfirmed password.</li>
+                      }
+                  </ul>
+                </div>
+          }
+          </div>
+          <div class="flex  justify-end gap-2 changepassnavbar">
+              <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+              <p-button label="Save" type="submit"/>
+          </div>
+      </p-dialog>
+
+    </form>
+</div>
+
+<div class="relative w-full md:static md:w-auto md:order-1">
+
+
+
+  <div
+  [ngClass]="{
+    'translate-y-0 pointer-events-auto': isMenuVisible || isScreenWide,
+    '-translate-y-[150%] pointer-events-none': !isMenuVisible && !isScreenWide,
+    'transition-all duration-500 ease-in-out': !disableTransition
+  }"
+  class="absolute left-0 top-6 w-full z-50
+    md:static md:translate-y-0 md:pointer-events-auto
+    md:flex md:w-auto"
+>
+    <ul
+    class="navLinks flex flex-col items-center gap-y-4 px-4 py-6
+    font-medium border border-[#8B5E35] bg-bg-color
+    rounded-lg shadow-lg
+    md:flex-row md:gap-y-0 md:space-x-4 rtl:space-x-reverse
+    md:border-none md:bg-transparent md:shadow-none md:p-0 md:mt-0">
+      <li>
+        <a 
+               [routerLink]="navCondition()"
+                #navLink
+                routerLinkActive="router-active"
+
+            class="  py-2 xl:px-3  text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+            Home
+        </a>
+      </li>
+      @if(isLogin()) {
+        <li>
+          <a 
+          #navLink
+          class="
+           py-2   text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+              services
+          </a>
+        </li>
+      }
+      <li>
+        <a 
+
+        routerLink="/products"
+        routerLinkActive="router-active"
+
+       
+         
+     
+        #navLink
+        class=" py-2  xl:px-3  text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+            Products
+        </a>
+      </li>
+      <li>
+        <a 
+            routerLink="/aboutus"
+           
+            #navLink
+            routerLinkActive="router-active"
+         class="  py-2    text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+        About Us
+         </a>
+        </li>
+      <li>
+        <a 
+            routerLink="/blog"
+           
+            routerLinkActive="router-active" 
+
+            #navLink
+        class="  py-2 xl:px-3  text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+            Blog
+        </a>
+       </li>
+       <li>
+        <a 
+            routerLink="/contactus"
+        
+            routerLinkActive="router-active"
+            #navLink
+            class=" py-2 xl:px-3 text-[17px] font-bold leading-[1.6875rem] cursor-pointer">
+            Contact Us
+        </a>
+    </li>
+    </ul>
+
+    
+  </div>
+
+  </div>
+ 
+  </div>
+</nav>
+
+

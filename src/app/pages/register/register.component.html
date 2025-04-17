@@ -1,0 +1,235 @@
+<section class="flex  bg-bg-color">
+    <div class="xlg:w-[50%] w-[100%] md:w-[70%] md:mx-auto  h-screen overflow-y-auto custom-scroll px-[20px] md:px-[60px] py-[24px] ">
+
+            <h1 class="text-[2rem] text-center md:text-start font-semibold leading-[3rem] text-text-color">Create a Account</h1>
+            <p class="text-[18px] leading-[1.6875rem] md:text-start text-center text-2nd-text">Create a new account</p>
+            <form class="pt-4" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+
+                <div class="mb-2">
+                
+                    <div class="mb-2">
+                        @let name = registerForm.get('name');
+                        <label for="name" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">User Name</label>
+                        <input formControlName="name" type="text" id="name"   class="bg-bg-color font-medium border border-gray-300 text-text-color text-sm rounded-lg  focus:ring-main-color focus:border-main-color block w-full p-3 placeholder:text-2nd-text " placeholder="Enter User Name..."  />
+                        @if(name?.errors && name?.touched) 
+                        {
+                            <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                </svg>
+                                <ul>
+                                    @if(name?.getError('required')){
+                                        <li>Name is required</li>
+                                    } 
+                                    @else if (name?.getError('minlength')) {
+                                        <li>Minimum Length of name is 3</li>
+                                    } 
+                                    @else if (name?.getError('maxlength')) {
+                                        <li>Maxmum Length of name is 20</li>
+                                    }
+                                </ul>
+                              </div>
+                        }
+                    </div>
+
+                    <div class="mb-2">
+                        @let email = registerForm.get('email');
+                        <label for="email" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+                            E-mail
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+                            <input formControlName="email" type="email" id="email"
+                             class="bg-bg-color border font-medium border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10  placeholder:text-2nd-text" 
+                                placeholder="Enter Your Email..." />
+                        </div>
+
+                        @if(email?.errors && email?.touched) 
+                        {
+                            <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                </svg>
+                                <ul>
+                                    @if(email?.getError('required')){
+                                        <li>email is required</li>
+                                    } 
+                                    @else if (email?.getError('email')) {
+                                        <li>Enter A Vaild E-mail</li>
+                                    }
+                                </ul>
+                              </div>
+                        }
+                    </div>
+                 
+                    <div class="block md:flex justify-center gap-2">
+                        <div class="mb-2 w-[100%] md:w-[50%]">
+                            @let password = registerForm.get('password');
+                            @let flageOne = true;
+                            <label for="password" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+                                <input formControlName="password"     [type]="isPasswordVisible ? 'text' : 'password'" id="password" 
+                                    class="bg-bg-color font-medium border  placeholder:text-2nd-text border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10 leading-normal" 
+                                    placeholder="Enter a valid Password..." />
+                                    <i (click)="togglePasswordVisibility(flageOne)"  class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isPasswordVisible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+                                  
+                            </div>
+
+                            @if(password?.errors && password?.touched) 
+                            {
+                                <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                    </svg>
+                                    <ul>
+                                        @if(password?.getError('required')){
+                                            <li>password is required</li>
+                                        } 
+                                        @else if (password?.getError('pattern')) {
+                                            <li>start with a capital letter and be at least 8 characters.</li>
+                                        }
+                                    </ul>
+                                  </div>
+                            }
+                            
+                            
+                        </div>
+                        
+                        
+                        <div class="mb-2 w-[100%] md:w-[50%]">
+                            @let repassword = registerForm.get('rePassword');
+                            @let flageTwo = false;
+                            <label for="rePassword" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">comfirm password</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-main-color"></i>
+                                <input formControlName="rePassword" [type]="isComfirmPasswordVisible ? 'text' : 'password'" id="rePassword" class=" placeholder:text-2nd-text bg-bg-color font-medium border border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10" placeholder="Comfirm Password..."  />
+                                <i (click)="togglePasswordVisibility(flageTwo)" class="fa-solid fa-eye-slash absolute right-3 top-1/2 transform -translate-y-1/2 text-main-color" [class]="isComfirmPasswordVisible ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'" ></i>
+                            </div>
+                            @if(registerForm.getError('mismatch') && repassword?.touched) {
+                                <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                    </svg>
+                                    <ul>
+                                            <li>Enter a comfirmed password</li>
+                                    </ul>
+                                  </div>
+                            }
+                            
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        @let phone = registerForm.get('phone');
+                        <label for="Phone" class="block mb-2 text-lg leading-[1.6875rem] font-medium text-text-color">Phone</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-phone absolute top-1/2 left-3 transform -translate-y-1/2 text-main-color"></i>
+                            <input formControlName="phone" type="tel" id="Phone" class=" placeholder:text-2nd-text bg-bg-color border font-medium border-gray-300 text-text-color text-sm rounded-lg focus:ring-main-color focus:border-main-color block w-full p-3 pl-10" placeholder="Enter Your Phone..."  />
+                        </div>
+                        @if(phone?.errors && phone?.touched) 
+                            {
+                                <div class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                                    </svg>
+                                    <ul>
+                                        @if(phone?.getError('required')){
+                                            <li>phone is required</li>
+                                        } 
+                                        @else if (phone?.getError('pattern')) {
+                                            <li>Enter a vaild Egyption Phone</li>
+                                        }
+                                    </ul>
+                                  </div>
+                            }
+                    </div>
+
+                    <div class="flex items-center gap-2 py-2">
+                        
+                        <input   #el type="checkbox" id="agree" class="rounded border border-main-color checked:text-main-color">
+                        <label for="agree">I agree to <span class="text-main-color underline cursor-pointer">Terms of Conditions</span></label>
+                    </div>
+
+                    @if(isChecked){
+                        <div  class="bg-[#D00439] text-white text-sm font-medium p-3 rounded-lg flex items-center gap-2 shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 19h14.14a2 2 0 001.74-3L13.74 4a2 2 0 00-3.48 0L3.19 16a2 2 0 001.74 3z"></path>
+                            </svg>
+                            <ul>
+                                <li>Must checked this button</li>
+                            </ul>
+                        </div>
+                    }
+                   
+                </div>
+
+                <div>
+
+                    <button   type="submit" class="bg-main-color rounded-full w-[100%] h-[45px] text-white">
+                        <span [class.hidden] = "isLoading"> Sign Up</span>
+                        <i  [class.hidden] = "!isLoading" class="fas fa-spin fa-spinner"></i>
+                    </button>
+                    
+                    <p class="leading-[1.4063rem] text-[15px] text-2nd-text text-center font-medium pt-2">Or Sign up With</p>
+                </div>
+                
+            </form>
+            
+            <div class="flex items-center justify-center gap-4 mt-3">
+                <div>
+                    <img src="./images/icons8-google-48.png" class="w-[30px] h-[30px] cursor-pointer" alt="google photo">
+                </div>
+                <div>
+                    <img src="./images/icons8-facebook-48.png" class="w-[30px] h-[30px] cursor-pointer" alt="facebook">
+                </div>
+                <div>
+                    <img src="./images/icons8-apple-50.png" class="w-[30px] h-[30px] cursor-pointer" alt="">
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <p class="text-[18px] leading-[27px] font-medium text-2nd-text">Already have on account? <a routerLink="/login" class="text-main-color underline cursor-pointer">Log In</a></p>
+            </div>
+                            
+    </div>
+
+
+
+
+
+
+
+
+    <div class="hidden xl:block w-[50%] relative">
+
+        <swiper-container
+                class="mySwiper"
+                speed="600"
+                parallax="true"
+                loop="true"
+                pagination-clickable="true"
+                pagination="true"
+                spaceBetween="0"
+        >
+
+        <swiper-slide>
+            <img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_SXck496Sg54.png" alt="">
+        </swiper-slide>
+        <swiper-slide><img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_krZnZodbOy4.png" alt=""></swiper-slide>
+        <swiper-slide><img class="swiper-image object-cover h-screen w-full" src="./images/unsplash_jrQv0161nNM.png" alt=""></swiper-slide>
+      </swiper-container>
+
+      <div class="absolute z-50 bottom-40 left-[50%] transform -translate-x-1/2">
+        <h1 class="text-[32px] font-bold leading-[27px] text-white text-center">
+            Welcome to Trendify
+        </h1>
+        <p class="font-medium text-[20px] leading-[30px] text-white text-center">
+            Discover the latest trends, express your unique style
+        </p>
+      </div>
+
+          
+    </div>
+</section>

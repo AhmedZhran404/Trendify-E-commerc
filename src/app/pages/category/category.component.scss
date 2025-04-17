@@ -1,0 +1,270 @@
+.main-title {
+    @apply text-main-color text-[26px] font-tendify-anchor text-center;
+}
+
+.second-title {
+    @apply text-[40px] font-semibold text-text-color text-center;
+}
+// class="mb-2 custom-skeleton p-skeleton p-component"
+// ::ng-deep .custom-skeleton .p-skeleton {
+//     background-color: #fff !important; /* هنا تحط اللون اللي إنت عايزه */
+// }
+
+::ng-deep #sekelton .p-skeleton{
+    background-color: #fff !important;
+}
+
+.show-products-primeng {
+    .p-tablist-tab-list {
+        background-color: #eeeeee !important;
+        justify-content: center !important;
+        border-radius: 50px !important;
+        border: none !important;
+        width: fit-content !important;
+        margin: auto !important;
+        padding: 8px 15px !important;
+        display: flex !important;
+        gap: 10px !important; 
+        margin-bottom: 25px !important;
+    }
+    
+    .p-tab-active {
+        background-color: var(--main-color) !important;
+        color: white !important;
+        border-radius: 50px !important;
+        border-bottom: none !important;
+        padding: 8px 20px !important;
+        font-weight: bold !important;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .p-tab {
+        border: none !important;
+        font-size: 18px !important;
+        transition: 0.3s ease-in-out !important;
+        padding: 8px 15px !important;
+    }
+    
+    .p-tab:not(.p-tab-active):not(.p-disabled):hover {
+        color: var(--2nd-text) !important;
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        border-radius: 50px !important;
+    }
+
+
+    
+    .p-tabpanels{
+        background-color: var(--bg-color) !important;
+        color: #000 !important;
+        border-radius: 10px !important;
+        padding: 0px !important;
+    }
+
+    
+    .p-tablist-active-bar {
+        height: 0px !important;
+    }
+    
+}
+
+.aside {
+
+   
+    .p-accordionheader:has(.p-accordionheader-toggle-icon.icon-start)  {
+        background-color: var(--bg-color);
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    .p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader {
+        background-color: var(--bg-color);
+    }
+    .p-accordioncontent-content  {
+        background-color: var(--bg-color);
+    }
+    .p-accordionpanel:not(.p-disabled) > .p-accordionheader:hover {
+        background-color: var(--bg-color) !important;
+        color: var(--main-color);
+    }
+    .p-accordionheader {
+        color: var(--text-color) !important;
+        padding-inline: 0rem;
+    }
+
+    .p-accordionpanel {
+        border: none !important;
+    }
+    .p-accordion {
+        width: 100% !important;
+    }
+    .p-accordionheader-toggle-icon {
+        color: var(--main-color);
+
+    }
+    .p-icon  {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .p-accordioncontent-content {
+        padding-inline: 0px !important;
+        background-color: var(--bg-color) !important;
+    }
+
+    .p-slider {
+        margin-top: 10px !important;
+    }
+    .p-slider-range {
+        background-color: var(--main-color) !important;
+    }
+
+    .p-component {
+
+        margin-bottom: 0px !important;
+    }
+    
+    
+
+    
+}
+
+.show-products-primeng-2 {
+
+    .p-tablist-tab-list {
+        flex-direction: column !important;
+        background-color: var(--bg-color) !important;
+    }
+
+
+    .p-tab-active  {
+        border: none !important;
+        color: var(--text-color) !important;
+    }
+
+    .p-tabpanels {
+        color: var(--2nd-text) !important;
+    }
+
+    .p-tab {
+        border: none !important;
+    }
+    
+    .p-tablist-tab-list {
+        border-bottom: none !important;
+    }
+
+    .p-tablist-active-bar {
+        width: 0px !important;
+    }
+}
+
+
+
+.paginator-Products {
+    .p-paginator {
+        background-color: var(--bg-color) !important;
+    }
+
+    .p-select {
+        display: none !important;
+    }
+    .p-paginator-first {
+        display: none !important;
+    }
+    .p-paginator-last {
+        display: none;
+    }
+
+
+    .p-icon {
+        
+        color: var(--main-color) !important;
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .p-paginator-page.p-paginator-page-selected  {
+        background-color: var(--main-color) !important;
+        color: white !important;
+    }
+}
+
+
+.sort-menu {
+    .p-menu-list{ 
+        background-color: #b9b9b9!important;
+        border-radius: 0px !important;
+        width: fit-content;
+    }
+    .p-menu-item-link {
+        color: var(--text-color) !important;
+    }
+    .p-menu-item-icon  {
+        color: var(--text-color) !important;
+    }
+    .p-menu-item:not(.p-disabled) .p-menu-item-content:hover  {
+        background-color: var(--bg-color) !important;
+    }
+    .p-menu-submenu-label {
+        display: none;
+    }
+    .ng-trigger{
+        z-index: 20 !important;
+    }
+    .p-menu {
+        min-width: fit-content !important;
+    }
+    .p-button {
+        background-color: var(--bg-color) !important;
+        border-radius: 0px !important;
+        color: var(--text-color) !important;
+        border: none !important;
+    }
+}
+
+
+
+
+
+
+
+@media screen and (max-width:768px) {
+  
+        .show-products-primeng-2 .p-tablist-tab-list {
+            background-color: white !important;
+        }
+        .aside .p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader {
+            background-color: white !important;
+        }
+    
+        .aside .p-accordionheader:has(.p-accordionheader-toggle-icon.icon-start) {
+            background-color: white !important;
+        }
+    
+        .p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled) > .p-accordionheader:hover {
+            background-color: #ddd !important;
+        }
+    
+        .aside .p-accordionheader {
+            padding-inline: 5px !important;
+            padding-top: 0px !important;
+        }
+    
+        .side-bar {
+            background-color: white !important;
+        }
+        
+    
+        .p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader {
+            color: var(--main-color) !important;
+        }
+        .p-tab{
+            padding-top: 0px !important;
+        }
+
+        .p-accordioncontent-content {
+            padding: 0px !important;
+        }
+        .aside .p-accordioncontent-content {
+            background-color: white !important;
+        }
+}

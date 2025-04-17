@@ -1,0 +1,324 @@
+<!-- &&start header section -->
+  <section id="header" class="min-h-screen px-2 sm:px-0 mt-36 pb-20 bg-bg-color">
+    <div class="flex items-center justify-between max-w-7xl m-auto gap-28 flex-col lg:flex-row">
+      <div class="w-full sm:w-[60%] lg:w-[45%] flex flex-col gap-8">
+        <div>
+          <h1 class="text-text-color text-[3.125rem] leading-[100%] font-medium">
+            Elevate Your Style with The Latest Trends.
+          </h1>
+  
+          <div class="w-[85%]">
+            <img class="w-[9.375rem] m-auto" src="./images/image11.png" alt="">
+          </div>
+        </div>
+        <div>
+          <p class="font-medium text-[1.125rem] text-2nd-text">
+            Explore a curated of stylish, affordable fashion designed to elevate your wardrobe. Discover the perfect blend of trend, comfort, and individuality for your look.
+          </p>
+        </div>
+  
+        <div class="button relative">
+          <button class="w-[18.9375rem] h-[3.625rem] rounded-full bg-main-color font-semibold text-white">
+            Download App
+          </button>
+  
+          <img class="w-[5.625rem] hidden md:block absolute translate-y-1/2 bottom-0 right-0" src="./images/image12.png" alt="">
+        </div>
+      </div>
+  
+      <div class="w-full  sm:w-[60%] lg:w-[40%] flex flex-col justify-center">
+        <div class="relative">
+          <img class="w-[5.625rem] absolute -translate-y-1/2 -translate-x-1/2 top-0 left-[50%]" src="./images/image12.png" alt="">
+          <div>
+            <img src="./images/image13.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- && ========== End header section ===== -->
+ 
+
+<!-- && ========== start services ========= -->
+<section class="md:px-10  py-20 bg-bg-color">
+
+
+      <div class="pb-8">
+        <h1 class="main-title">Services</h1>
+        <p class="second-title">Benefits when using</p>
+        <p class="second-title">our services</p>
+      </div>
+
+    
+        
+        <div class="max-w-7xl m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="bg-white pt-4 pl-6 pb-8 rounded-xl shadow-lg">
+              <div class=" w-[3.125rem] h-[3.125rem] rounded-full flex items-center justify-center bg-bg-color">
+                <i class="fa-solid fa-lightbulb text-main-color text-[1.25rem]"></i>
+              </div>
+              <div>
+                  <h2 class="pb-5 pt-2 text-[1.25rem] font-semibold leading-[100%] text-text-color">
+                      Inspiration
+                  </h2>
+                  <p class="text-[1.125rem] text-2nd-text pr-20">
+                      Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.
+                  </p>
+              </div>
+          </div>
+      
+          <div class="bg-white pt-4 pl-6 pb-8 rounded-xl shadow-lg">
+              <div class="w-[3.75rem] h-[3.75rem] rounded-full flex items-center justify-center bg-bg-color">
+                  
+                  <i class="fa-solid fa-headphones text-main-color text-[1.25rem]"></i>
+              </div>
+              <div>
+                  <h2 class="pb-5 pt-2 text-[1.25rem] font-semibold leading-[100%] text-text-color">
+                      24/7 Customer Services
+                  </h2>
+                  <p class="text-[1.125rem] text-2nd-text pr-20">
+                      Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.
+                  </p>
+              </div>
+          </div>
+      
+          <div class="bg-white pt-4 pl-6 pb-8 rounded-xl shadow-lg">
+              <div class="w-[3.75rem] h-[3.75rem] rounded-full flex items-center justify-center bg-bg-color">
+                <i class="fa-solid fa-truck-fast text-main-color text-[1.25rem]"></i>
+              </div>
+              <div>
+                  <h2 class="pb-5 pt-2 text-[1.25rem] font-semibold leading-[100%] text-text-color">
+                      Express Shipping
+                  </h2>
+                  <p class="text-[1.125rem] text-2nd-text pr-20">
+                      Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.
+                  </p>
+              </div>
+          </div>
+      </div> 
+     
+
+</section>
+<!-- && ========== End services ========= -->
+
+
+
+<!-- && ========== start products ============= -->
+
+<section class="py-20  bg-bg-color show-prodct-landing ">
+<div class="pb-8">
+  <h1 class="main-title">Products</h1>
+  <h2 class="second-title">Best Selling Product</h2>
+</div>
+
+
+<div class="card mb-5">
+  <p-tabs   [(value)]="ActiveTap">
+      <p-tablist class="!overflow-x-auto !scrollbar-hide  !whitespace-nowrap">
+          @for (tab of tabs; track tab.value) {
+              <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+          }
+      </p-tablist>
+      <div class="md:max-w-7xl md:mx-auto">
+        <p-tabpanels>
+          @for (tab of tabs; track tab.value) {
+              <p-tabpanel class="sm:w-full" [value]="tab.value">
+  
+                  <div class="w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  
+                      @for (card of tab.cards; track card.title) {
+  
+                          <app-card [title]="card.title" [image]="card.image"></app-card>
+  
+                      }
+  
+                  </div>
+              </p-tabpanel>
+          }
+      </p-tabpanels>
+
+      </div>
+  </p-tabs>
+</div>
+<div class="text-center">
+
+  <button (click)="showAlert()" class="w-[8.9375rem] h-[46px] font-medium text-[18px] rounded-[2rem] border border-main-color text-main-color">
+    See All <i class="fa-solid fa-chevron-right"></i>
+  </button>
+  
+</div>
+</section>
+<!-- && ========== start products ============= -->
+
+
+<!-- && ========== start products ============= -->
+<section class="bg-bg-color relative w-full h-[450px] pb-10 flex items-center justify-center text-center text-white">
+
+  <div class="absolute inset-0">
+    <img
+      src="./images/unsplash_nimElTcTNyY.png"
+      alt="Fashion"
+      class="w-full h-full object-cover object-[17px_10%]"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl">
+    <h1 class="text-xl md:text-5xl font-bold">
+      Discover Fashion That Speaks To You.
+    </h1>
+
+    <p class="mt-4 text-lg md:font-medium md:text-2xl">
+      Explore a range of high-quality, affordable furniture designed to
+      transform any room. Discover the perfect blend of style, comfort, and
+      functionality for your space.
+    </p>
+
+    <button class="mt-6 px-6 py-3 border border-white rounded-full text-lg font-medium hover:bg-white hover:text-black transition" >
+      See More
+    </button>
+  </div>
+
+</section>
+<!-- && ========== End products ============= -->
+
+
+
+<!-- && ========== Start Testimonial ============ -->
+ <section class="py-5 bg-bg-color">
+  <div class="text-center pb-5">
+
+    <h1 class="main-title">Testimonials</h1>
+    <h2 class="second-title">What Our Customer Say</h2>
+  </div>
+
+  
+<div class="max-w-8xl relative">
+
+
+  <button (click)="prevSlide()" 
+  class="btn-testimonial-landing hidden absolute left-[5%] top-[50%] -translate-y-1/2 z-10 p-2 text-[#8B5E35] bg-transparent hover:text-[#A76D47] transition">
+  <i class="fa-solid fa-chevron-left text-2xl"></i>
+</button>
+
+<div class="max-w-7xl m-auto">
+    <owl-carousel-o [options]="customOptions">
+      
+        @for ( testimonial of testimonials; track $index) {
+
+
+          <ng-template carouselSlide>
+            <div class="testimonial-card">
+              <div class="px-4 pt-4 shadow-md pb-7 bg-white rounded-[10px]">
+                <div class="pb-4">
+                  <i class="fa-solid fa-quote-left text-[30px] text-main-color"></i>
+                </div>
+                <p [innerHTML]="testimonial.text" class="text-[18px] text-2nd-text leading-[100%] pb-5">
+                  {{testimonial.text}}
+                </p>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                      <div>
+                        <img class="w-[40px]" [src]="testimonial.image" alt="">
+                      </div>
+                      <h3 class="text-[20px] text-text-color font-semibold">
+                        {{testimonial.name}}
+                      </h3>
+                    </div>
+                    <div>
+                       <i class="fa-solid fa-star text-[#ffc000] text-[18px]"></i> {{testimonial.rating}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </ng-template>
+        }
+    
+        
+        
+      </owl-carousel-o>
+    </div>
+      
+      <button (click)="nextSlide()" 
+      class="btn-testimonial-landing hidden absolute right-[5%] bottom-[50%] translate-y-1/2 z-10 p-2 text-[#8B5E35] bg-transparent hover:text-[#A76D47] transition">
+      <i class="fa-solid fa-chevron-right text-2xl"></i>
+     </button>
+
+     </div>
+
+
+</section> 
+
+<!-- && ========== End Testimonial ============ -->
+
+
+<!-- && ========== Contact US ================-->
+<section class="py-20 px-4 bg-bg-color">
+  <div class="max-w-7xl mx-auto">
+    <div>
+      <h1 class="text-[40px] font-semibold leading-[120%] text-text-color text-center md:text-left">Contact me</h1>
+      <p class="text-[18px] font-medium leading-[150%] text-2nd-text text-center md:text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+    </div>
+
+    <div class="w-full md:w-[70%] pt-6">
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+
+        <div class="mb-5 w-full md:w-[48%]">
+          <label for="name" class="block mb-2 text-sm font-medium text-text-color text-[20px]">First Name</label>
+          <input type="text" id="name" class="border border-main-color text-text-color text-sm rounded-lg focus:border-main-color block w-full p-2.5 bg-white"/>
+        </div>
+        <div class="mb-5 w-full md:w-[48%]">
+          <label for="email" class="block mb-2 text-sm font-medium text-text-color text-[20px]">Last Name</label>
+          <input type="email" id="email" class="border border-main-color text-text-color text-sm rounded-lg focus:border-main-color block w-full p-2.5 bg-white"/>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2 mt-2">
+
+        <div class="mb-5 w-full md:w-[48%]">
+          <label for="email" class="block mb-2 text-sm font-medium text-text-color text-[20px]">Email</label>
+          <input type="email" id="email" class="border border-main-color text-text-color text-sm rounded-lg focus:border-main-color block w-full p-2.5 bg-white"/>
+        </div>
+        <div class="mb-5 w-full md:w-[48%]">
+          <label for="phone" class="block mb-2 text-sm font-medium text-text-color text-[20px]">Phone Number</label>
+          <input type="tel" id="phone" class="border border-main-color text-text-color text-sm rounded-lg focus:border-main-color block w-full p-2.5 bg-white"/>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <label for="countries" class="block mb-2 text-[20px] text-text-color">Choose a topic</label>
+        <select id="countries" class="border border-main-color text-text-color text-sm rounded-lg focus:border-main-color block w-full p-2.5 bg-white">
+          <option>Bags</option>
+          <option>Accessories</option>
+          <option>Full Outfit</option>
+          <option>Watches</option>
+        </select>
+      </div>
+
+      <div class="mt-2">
+        <label for="message" class="block mb-2 text-[20px] text-text-color">Your message</label>
+        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-2nd-text bg-white rounded-lg border border-main-color focus:border-main-color" placeholder="Leave a comment..."></textarea>
+      </div>
+
+      <div class="flex items-center mt-2 gap-2">
+        <input type="checkbox" id="terms" class="rounded border border-main-color checked:text-main-color"/>
+        <label for="terms" class="text-[15px] leading-[150%] text-2nd-text">I accept the terms</label>
+      </div>
+
+      <div class="my-4">
+        <button class="text-white w-[200px] h-[50px] bg-main-color rounded-[50px]">
+          Submit
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- && ========== Contact US ================-->
+
+
+
+
+
+
