@@ -29,7 +29,7 @@ export class CheckoutService {
   }
 
   checkOutSession(data:any , id:string):Observable<any>{
-    return this.httpClient.post(`${environmentRout.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200` , 
+    return this.httpClient.post(`${environmentRout.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://trendify-e-commerc.vercel.app/` , 
       {
         "shippingAddress": data
       }
